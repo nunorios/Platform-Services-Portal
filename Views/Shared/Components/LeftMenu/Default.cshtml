@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@model IEnumerable<Platform_Services_Portal.Models.LeftMenu>
+<div class="row">
+    <div class="card card-profile">
+        <div class="card-avatar">
+            @if (@HttpContextAccessor.HttpContext.Session.GetString("Customer") != null)
+            {
+                string s = @HttpContextAccessor.HttpContext.Session.GetString("Customer");//(String)TempData["customer"];
+                s = "/images/" + s.ToLower() + ".png";
+                <img class="img" src=@s />
+            }
+        </div>
+    </div>
+</div>
+<ul class="nav">
+    <li class="nav-item ">
+        <a class="nav-link" href="../../Home">
+            <i class="material-icons">dashboard</i>
+            <p> Dashboard </p>
+        </a>
+    </li>
+    @foreach (var menu in Model)
+    {
+        <li class="nav-item ">
+            <a class="nav-link" data-toggle="collapse" href="#@menu.SquadName">
+                <i class="material-icons">image</i>
+                <p>
+                    @menu.SquadName
+                    <b class="caret"></b>
+                </p>
+            </a>
+            @if (menu.SquadMenu != null)
+            {
+                <div class="collapse" id="@menu.SquadName">
+
+                    @foreach (var subMenu in menu.SquadMenu)
+                    {
+                        string s = @HttpContextAccessor.HttpContext.Session.GetString("Customer");
+                        if (s != null)
+                        {
+                            if (subMenu.Customers.Contains(s))
+                            {
+
+                                <ul class="nav">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="@subMenu.Alias">
+                                            <span class="sidebar-mini"> P </span>
+                                            <span class="sidebar-normal"> @subMenu.MenuName </span>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            }
+                        }
+                    }
+                </div>
+            }
+        </li>
+    }
+</ul>

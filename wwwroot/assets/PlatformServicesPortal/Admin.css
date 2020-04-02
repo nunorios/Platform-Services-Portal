@@ -1,0 +1,13 @@
+﻿body {
+}
+
+
+a.nav-link.active {
+    border-bottom: dashed thin;
+    border-top: dashed thin;
+}
+
+.main-panel .content {
+margin-top: 35px;
+
+}

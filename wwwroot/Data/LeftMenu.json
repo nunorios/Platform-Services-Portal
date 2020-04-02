@@ -1,0 +1,70 @@
+[
+  {
+    "SquadName": "Server Config",
+    "SquadMenu": [
+      {
+        "Alias": "/Server",
+        "Customers": [ "MBCP", "NB", "UNI", "BIC" ],
+        "MenuName": "Server configuration",
+        "Provider": "nuno-rios/Testes"
+      },
+      {
+        "Alias": "VmW_AddDiskCapacityVM/Create",
+        "Customers": [ "MBCP", "NB", "UNI", "BIC" ],
+        "MenuName": "Upgrade disk size",
+        "Provider": "nuno-rios/Testes"
+      },
+      {
+        "Alias": "VmW_AddNewDisk",
+        "Customers": [ "MBCP", "NB", "UNI", "BIC" ],
+        "MenuName": "Add new disk",
+        "Provider": "nuno-rios/Testes"
+      }
+    ]
+  },
+  {
+    "SquadName": "Backups",
+    "SquadMenu": [
+      {
+        "Alias": "BCK-New",
+        "Customers": [ "MBCP", "NB" ],
+        "MenuName": "Add new backup",
+        "Provider": "nuno-rios/Testes"
+      },
+      {
+        "Alias": "BCK-Blocked",
+        "Customers": [ "MBCP", "NB", "UNI" ],
+        "MenuName": "Stop backup",
+        "Provider": "nuno-rios/Testes"
+      }
+    ]
+  },
+  {
+    "SquadName": "Monitoring",
+    "SquadMenu": [
+      {
+        "Alias": "BlueCare-NewSituation",
+        "Customers": [ "MBCP", "NB", "UNI" ],
+        "MenuName": "New bluecare situation",
+        "Provider": "nuno-rios/Testes"
+      },
+      {
+        "Alias": "BlueCare-TresholdModify",
+        "Customers": [ "MBCP", "NB", "UNI" ],
+        "MenuName": "Add new treshold",
+        "Provider": "nuno-rios/Testes"
+      }
+    ]
+  },
+  {
+    "SquadName": "Service request",
+    "SquadMenu": [
+      {
+        "Alias": "/SubmitGitHubIssue",
+        "Customers": [ "MBCP", "NB", "UNI" ],
+        "MenuName": "Generic SR",
+        "Provider": "nuno-rios/Testes"
+      }
+    ]
+  }
+]

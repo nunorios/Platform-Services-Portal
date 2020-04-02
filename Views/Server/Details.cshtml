@@ -1,0 +1,105 @@
+﻿@model Platform_Services_Portal.Models.Server
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-info card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">assignment</i>
+                        </div>
+                        <h4 class="card-title">Server @Html.DisplayFor(model => model.ServerName) details</h4>
+                    </div>
+                    <div class="card-body">
+                        <dl class="row">
+                            <dt class="col-6">
+                                @Html.DisplayNameFor(model => model.ServerName)
+                            </dt>
+                            <dd class="col-6">
+                                @Html.DisplayFor(model => model.ServerName)
+                            </dd>
+                            <dt class="col-6">
+                                @Html.DisplayNameFor(model => model.Type)
+                            </dt>
+                            <dd class="col-6">
+                                @Html.DisplayFor(model => model.Type)
+                            </dd>
+                            <dt class="col-6">
+                                @Html.DisplayNameFor(model => model.Summary)
+                            </dt>
+                            <dd class="col-6">
+                                @Html.DisplayFor(model => model.Summary)
+                            </dd>
+                            <dt class="col-6">
+                                @Html.DisplayNameFor(model => model.Customer)
+                            </dt>
+                            <dd class="col-6">
+                                @Html.DisplayFor(model => model.Customer)
+                            </dd>
+                            <dt class="col-6">
+                                @Html.DisplayNameFor(model => model.Memory)
+                            </dt>
+                            <dd class="col-6">
+                                @Html.DisplayFor(model => model.Memory)
+                            </dd>
+                            <dt class="col-6">
+                                @Html.DisplayNameFor(model => model.CPU)
+                            </dt>
+                            <dd class="col-6">
+                                @Html.DisplayFor(model => model.CPU)
+                            </dd>
+                        </dl>
+
+                    </div>
+
+
+                </div>
+
+                <div class="card">
+                    <div class="card-header card-header-info card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">assignment</i>
+                        </div>
+                        <h4 class="card-title">Disk details</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">#</th>
+                                        <th>Disk Label</th>
+                                        <th>Disk Size</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var s in Model.Disks)
+                                    {
+                                        <tr>
+                                            <td class="text-center">1</td>
+                                            <td>@Html.DisplayFor(model => s.DiskLabel)</td>
+                                            <td>@Html.DisplayFor(model => s.DiskSize)</td>
+                                            <td>
+                                                @Html.ActionLink("Edit", "EditDisk", new { id = s.DiskLabel }, new { @class = "btn btn-success right" })
+                                          
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

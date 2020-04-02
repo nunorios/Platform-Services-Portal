@@ -1,0 +1,63 @@
+﻿https://channel9.msdn.com/Series/ASPNET-Core-101/?WT.mc_id=Educationaspnet-c9-niner
+Github source. https://github.com/dotnet-presentations/ContosoCrafts
+https://channel9.msdn.com/Series/ASPNET-Core-101/ASPNET-Adding-a-Service-to-an-ASPNET-Core-Website-4-of-13?ocid=player
+
+
+website as API
+https://channel9.msdn.com/Series/ASPNET-Core-101/ASPNET-Making-a-Simple-API-7-of-13
+edit startup.cs file
+app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages();
+                endpoints.MapGet("/products", (context) =>{});
+            });
+
+
+
+GitHubAPI
+https://www.codeproject.com/Articles/1277348/Using-Csharp-Code-to-Access-the-GitHub-API
+https://github.com/octokit/octokit.net
+
+Git Token: 5f9846604d247cc370bb48b2cc166cae24dab7f7
+
+
+Octokit
+https://octokitnet.readthedocs.io/en/latest/
+
+Bootstrap
+Cards
+https://www.youtube.com/watch?v=5qzzjvZ4w0c
+
+MVC
+https://www.c-sharpcorner.com/article/building-a-simple-registration-form-in-asp-net-mvc/
+
+<!--data anotation no model-->
+
+<!--page validation-->
+
+
+<!--icons  material-icons--->
+https://material.io/
+
+ <i class="material-icons">assignment</i>
+
+ Fluxo para razor
+ json file -> class -> Service -> Startup registo do servico ->razor page
+
+ How to serialize and deserialize (marshal and unmarshal) JSON in .NET
+ https://docs.microsoft.com/en-us/dotnet/standard/serialization/system-text-json-how-to
+
+
+ Single Sign ON IBM
+ https://w3-connections.ibm.com/wikis/home?lang=en-us#!/wiki/W89b23bf7ad80_4411_822f_2a6dc171c6b3/page/w3ID%20-%20the%20next%20generation%20authentication%20service%20for%20IBM%20employees
+
+
+ Cores
+ #668cff - Azul
+
+
+ Passing values between Views and Controllers and Controlles to controllers
+ https://www.codeproject.com/articles/758458/passing-data-view-to-controller-controller-to-view
+
+ Working with Session
+ https://benjii.me/2016/07/using-sessions-and-httpcontext-in-aspnetcore-and-mvc-core/

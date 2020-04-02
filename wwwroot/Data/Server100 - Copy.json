@@ -1,0 +1,57 @@
+[
+  {
+    "Server Name": "Server100",
+    "Type": "Physical",
+    "Summary": "Production",
+    "Customer": "XPTO",
+    "Memory": 1024,
+    "CPU": 8,
+    "Software": [
+      "IIS",
+      "APACHE",
+      "Visual studio"
+    ],
+    "Disks": [
+      {
+        "Drive Letter": "C",
+        "Disk Size": 100
+      },
+      {
+        "Drive Letter": "D",
+        "Disk Size": 200
+      },
+      {
+        "Drive Letter": "E",
+        "Disk Size": 500
+      }
+    ]
+
+  },
+  {
+    "Server Name": "Server200",
+    "Type": "Physical",
+    "Summary": "Production",
+    "Customer": "NASA",
+    "Memory": 2048,
+    "CPU": 16,
+    "Software": [
+      "IIS",
+      "APACHE",
+      "Visual studio"
+    ],
+    "Disks": [
+      {
+        "Drive Letter": "C",
+        "Disk Size": 100
+      },
+      {
+        "Drive Letter": "D",
+        "Disk Size": 200
+      },
+      {
+        "Drive Letter": "E",
+        "Disk Size": 500
+      }
+    ]
+  }
+]

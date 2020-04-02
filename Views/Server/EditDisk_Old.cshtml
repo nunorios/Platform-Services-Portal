@@ -1,0 +1,53 @@
+﻿@model Platform_Services_Portal.Models.Server
+
+@{
+    ViewData["Title"] = "EditDisk";
+}
+
+<h1>EditDisk</h1>
+
+<h4>Server</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditDisk">
+            <div class="card">
+                <div class="card-header card-header-info card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">assignment</i>
+                    </div>
+                    <h4 class="card-title">Change disk size for server @Model.ServerName</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Disk Label</th>
+                                    <th>Actual Size</th>
+                                    <th>New Size</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    @foreach (var diskToChange in Model.Disks)
+                                    {
+                                        if (diskToChange.DiskLabel == ViewBag.PersonName)
+                                        { 
+                                        <tr>
+                                            <td>@diskToChange.DiskLabel</td>
+                                            <td>@diskToChange.DiskSize</td>
+                                            <td>@Html.TextBox("newDiskSize")
+<td>
+                                                @Html.ActionLink("Change", "ChangeDisk", new { diskLabel = diskToChange.DiskLabel },  new { @class = "btn btn-success right" })
+                                        </tr>
+                                        }
+                                    }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
