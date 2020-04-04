@@ -7,7 +7,7 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-header card-header-info card-header-icon">
                         <div class="card-icon">
@@ -54,12 +54,8 @@
                                 @Html.DisplayFor(model => model.CPU)
                             </dd>
                         </dl>
-
                     </div>
-
-
                 </div>
-
                 <div class="card">
                     <div class="card-header card-header-info card-header-icon">
                         <div class="card-icon">
@@ -75,31 +71,76 @@
                                         <th class="text-center">#</th>
                                         <th>Disk Label</th>
                                         <th>Disk Size</th>
-                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var s in Model.Disks)
-                                    {
-                                        <tr>
-                                            <td class="text-center">1</td>
-                                            <td>@Html.DisplayFor(model => s.DiskLabel)</td>
-                                            <td>@Html.DisplayFor(model => s.DiskSize)</td>
-                                            <td>
-                                                @Html.ActionLink("Edit", "EditDisk", new { id = s.DiskLabel }, new { @class = "btn btn-success right" })
-                                          
-                                            </td>
-                                        </tr>
+                                    @{
+                                        for (int index = 0; index < Model.Disks.Count; index++)
+                                        {
+                                            <tr>
+                                                <td class="text-center">@index</td>
+                                                <td>@Html.DisplayFor(model => @Model.Disks[index].DiskLabel)</td>
+                                                <td>@Html.DisplayFor(model => @Model.Disks[index].DiskSize)</td>
+                                            </tr>
+                                        }
                                     }
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
+                <div class="card">
+                    <div class="card-body">
+                    </div>
+                    <div class="card-footer text-center">
+                        <div class="form-check mr-auto">
+                        </div>
+                        <button class="btn">
+                            <span class="btn-label">
+                                <i class="material-icons">keyboard_arrow_left</i>
+                            </span>
+                            @Html.ActionLink("Back to list", "Index", "Server", null, new { style = "color: white" })
+                        </button>
+                        <button class="btn btn-info">
+                            <span class="btn-label">
+                                <i class="material-icons">get_app</i>
+                            </span>
+                            @Html.ActionLink("Export", "", "Server", null, new { style = "color: white" })
+                        </button>
+                        <button class="btn btn-warning">
+                            <span class="btn-label">
+                                <i class="material-icons">warning</i>
+                            </span>
+                            @Html.ActionLink("Change config", "Edit", "Server", null, new { style = "color: white" })
+                        </button>
+                    </div>
+                       
+                    </div>
+                </div>
+                <h6>
+                    @{if (ViewBag.Differences != null)
+                        {
+
+                            foreach (var dif in ViewBag.Differences)
+                            {
+                                @dif.MemberPath <br />
+                                @dif.Value1 <br />
+                                @dif.Value2; <br />
+                            }
+                            if (ViewBag.Differences.Count > 0)
+                            {
+                                <button class="btn btn-warning">
+                                    <span class="btn-label">
+                                        <i class="material-icons">warning</i>
+                                    </span>
+                                    @Html.ActionLink("Commit changes", "Index", "Server", null, new { style = "color: white" })
+                                </button>
+                            }
+                        }
+                    }
+                </h6>
             </div>
         </div>
     </div>
 </div>
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+

@@ -4,7 +4,7 @@
     "SquadMenu": [
       {
         "Alias": "/Server",
-        "Customers": [ "MBCP", "NB", "UNI", "BIC" ],
+        "Customers": [ "NB", "UNI", "BIC" ],
         "MenuName": "Server configuration",
         "Provider": "nuno-rios/Testes"
       },

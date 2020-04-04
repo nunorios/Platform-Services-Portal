@@ -22,6 +22,7 @@ namespace Platform_Services_Portal.Controllers
        [HttpPost]
         public async Task<IActionResult> Index(GitHubIssueModel newIssue)
         {
+            gitHubService = new GitHubService();
             await gitHubService.SettIssue(newIssue);
             ModelState.Clear();
             newIssue.Title = "";

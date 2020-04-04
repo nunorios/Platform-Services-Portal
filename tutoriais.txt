@@ -61,3 +61,7 @@ https://material.io/
 
  Working with Session
  https://benjii.me/2016/07/using-sessions-and-httpcontext-in-aspnetcore-and-mvc-core/
+
+
+ ObjectsComparer
+https://levelup.gitconnected.com/using-objectscomparer-to-compare-objects-in-net-c-2a4faab9630e

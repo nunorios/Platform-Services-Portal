@@ -16,8 +16,8 @@ namespace Platform_Services_Portal.Models
         public string Customer { get; set; }
         public int Memory { get; set; }
         public int CPU { get; set; }
-        public IEnumerable<Disk> Disks { get; set; }
-        public IEnumerable<string> Software { get; set; }
+        public List<Disk> Disks { get; set; }
+        //public IEnumerable<string> Software { get; set; }
 
         public override string ToString() => JsonSerializer.Serialize<Server>(this);
     }

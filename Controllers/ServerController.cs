@@ -4,19 +4,35 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Platform_Services_Portal.Models;
 using Platform_Services_Portal.Services;
+using ObjectsComparer;
 
 namespace Platform_Services_Portal.Controllers
 {
     public class ServerController : Controller
     {
         public JsonFileServices JsonService;
+
+        public Server originalServer;
         public Server server { get; set; }
         public Disk disk { get; set; }
 
+        IEnumerable<Difference> differences;
         public void setServerToSession(Server server)
         {
             var serverToSession = JsonConvert.SerializeObject(server);
             HttpContext.Session.SetString("Server", serverToSession);
+        }
+
+        public void setDifferencesToSession(IEnumerable<Difference> _differences)
+        {
+            var _differencesToSession = JsonConvert.SerializeObject(_differences);
+            HttpContext.Session.SetString("differences", _differencesToSession);
+        }
+        public IEnumerable<Difference> getDifferencesFromSession()
+        {
+            var str = HttpContext.Session.GetString("differences");
+            differences = JsonConvert.DeserializeObject<IEnumerable<Difference>>(str);
+            return differences;
         }
         public Server getServerFromSession()
         {
@@ -31,7 +47,7 @@ namespace Platform_Services_Portal.Controllers
             return View(JsonService.GetServerList());
         }
 
-        // GET: Server/Details/5
+        // GET: called by Index to display details for server
         [Route("/Server/Details/{ServerName}")]
         public ActionResult Details(string serverName)
         {
@@ -43,119 +59,50 @@ namespace Platform_Services_Portal.Controllers
             }
             return View(server);
         }
+
         public ActionResult Details()
         {
+            try
+            {
+                ViewBag.Differences = getDifferencesFromSession();
+            }
+            catch(System.Exception ex)
+            { }
+            //if (differences.Count>0)
+            //{
+            //    ViewBag.Differences = differences;
+            //}
             server = getServerFromSession();
             return View(server);
         }
-
-        // GET: Server/Create
-        public ActionResult Create()
+        public ActionResult Edit(Server _server)
         {
-            return View();
-        }
-
-        // POST: Server/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
+            if (_server.ServerName is null)
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction(nameof(Index));
+                server = getServerFromSession();
+                return View(server);
             }
-            catch
+            else
             {
-                return View();
-            }
-        }
-
-        // GET: Server/Edit/5
-        public ActionResult Edit()
-        {
-            return View();
-        }
-
-        [Route("/Server/Edit/{ServerName}")]
-        public ActionResult Edit(string serverName)
-        {
-            //var str = HttpContext.Session.GetString("Server");
-            //server = JsonConvert.DeserializeObject<Server>(str);
-            return View(getServerFromSession());
-        }
-        [Route("/Server/EditDisk/{DiskLabel}")]
-        public ActionResult EditDisk(string diskLabel)
-        {
-            server = getServerFromSession();
-            Disk disk = new Disk();
-            foreach (var d in server.Disks)
-            {
-                if (d.DiskLabel == diskLabel)
+                if (!compareServerConfig(_server))
                 {
-                    disk = d;
+                    setServerToSession(_server);
                 }
-            }
-            return View(disk);
-        }
-
-        //[Route("/Server/ChangeDisk/{diskLabel}")]
-        public ActionResult ChangeDisk(Disk editDisk)
-        {
-            server = getServerFromSession();
-            IEnumerable<Disk> disksList = server.Disks;
-            foreach (var d in disksList)
-            {
-                if (d.DiskLabel == editDisk.DiskLabel)
-                {
-                    d.DiskSize = editDisk.DiskSize;
-                }
-            }
-            server.Disks = disksList;
-            setServerToSession(server);
-            HttpContext.Session.Remove("Disk");
-            return RedirectToAction(nameof(Details));
-        }
-
-        // POST: Server/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
+                return Redirect(nameof(Details));
             }
         }
 
-        // GET: Server/Delete/5
-        public ActionResult Delete(int id)
+        public bool compareServerConfig(Server toCompare)
         {
-            return View();
-        }
-
-        // POST: Server/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
+            JsonService = new JsonFileServices();
+            foreach (var s in JsonService.GetServer(toCompare.ServerName))
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
+                originalServer = s;
             }
-            catch
-            {
-                return View();
-            }
+            var comparer = new ObjectsComparer.Comparer<Server>();
+            var isEqual = comparer.Compare(originalServer, toCompare, out differences);
+            setDifferencesToSession(differences);
+            return isEqual;
         }
     }
 }
