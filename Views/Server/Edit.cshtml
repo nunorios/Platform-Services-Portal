@@ -23,34 +23,58 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label asp-for="ServerName" class="control-label" hidden>Server name</label>
-                                        <input asp-for="ServerName" class="form-control"  hidden/>
-                                        <span asp-validation-for="ServerName" class="text-danger"></span>
+                                        <input asp-for="ServerName" class="form-control" hidden />
                                     </div>
-                                    <div class="form-group">
-                                        <label asp-for="Type" class="control-label" ></label>
-                                        <input asp-for="Type" class="form-control" />
-                                        <span asp-validation-for="Type" class="text-danger"></span>
+                                    <div class="row">
+                                        <label class="col-md-3 col-form-label">Type</label>
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <input asp-for="Type" class="form-control" readonly />
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label asp-for="Summary" class="control-label" hidden></label>
-                                        <input asp-for="Summary" class="form-control" hidden/>
-                                        <span asp-validation-for="Summary" class="text-danger"></span>
+
+                                    <div class="row">
+                                        <label class="col-md-3 col-form-label">Operating system</label>
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <input asp-for="OperatingSystem" class="form-control" readonly />
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label asp-for="Customer" class="control-label"></label>
-                                        <input asp-for="Customer" class="form-control" />
-                                        <span asp-validation-for="Customer" class="text-danger"></span>
+                                    <div class="row">
+                                        <label class="col-md-3 col-form-label">Environment</label>
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <input asp-for="Environment" class="form-control" readonly />
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label asp-for="Memory" class="control-label"></label>
-                                        <input asp-for="Memory" class="form-control" />
-                                        <span asp-validation-for="Memory" class="text-danger"></span>
+                                    <div class="row">
+                                        <label class="col-md-3 col-form-label">Customer</label>
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <input asp-for="Customer" class="form-control" readonly />
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label asp-for="CPU" class="control-label"></label>
-                                        <input asp-for="CPU" class="form-control" />
-                                        <span asp-validation-for="CPU" class="text-danger"></span>
+                                    <div class="row">
+                                        <label class="col-md-3 col-form-label">Memory</label>
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <input asp-for="Memory" class="form-control" />
+                                            </div>
+                                        </div>
                                     </div>
+                                    <div class="row">
+                                        <label class="col-md-3 col-form-label">CPU</label>
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <input asp-for="CPU" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="card">
@@ -68,41 +92,75 @@
                                                     <th class="text-center">#</th>
                                                     <th>Disk Label</th>
                                                     <th>Disk Size</th>
+                                                    <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @for (int index = 0; index < Model.Disks.Count; index++)
                                                 {
-                                                    <tr>
-                                                        <td class="text-center">@index</td>
-                                                        <td>
-                                                            <div class="form-group">
-                                                                <label asp-for=@Model.Disks[index].DiskLabel class="control-label" hidden></label>
-                                                                <input asp-for=@Model.Disks[index].DiskLabel class="form-control"  readonly/>
-                                                                <span asp-validation-for=@Model.Disks[index].DiskLabel class="text-danger"></span>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="form-group">
-                                                                <label asp-for=@Model.Disks[index].DiskSize class="control-label" hidden></label>
-                                                                <input asp-for=@Model.Disks[index].DiskSize class="form-control" />
-                                                                <span asp-validation-for=@Model.Disks[index].DiskSize class="text-danger"></span>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
+
+                                                    @if (@Model.Disks[index].DiskLabel == "new disk label")
+                                                    {
+                                                        <tr>
+                                                            <td class="text-center">@index</td>
+                                                            <td>
+                                                                <div class="form-group">
+                                                                    <input asp-for=@Model.Disks[index].DiskLabel class="form-control" />
+                                                                    <span asp-validation-for=@Model.Disks[index].DiskLabel class="text-danger"></span>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="form-group">
+                                                                    <input asp-for=@Model.Disks[index].DiskSize class="form-control" />
+                                                                    <span asp-validation-for=@Model.Disks[index].DiskSize class="text-danger"></span>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <input type="submit" value="Submit changes" class="btn btn-warning" />
+                                                                @Html.ActionLink("Discard changes", "Index", new { userAction = "Discard" }, new { style = "color: white" })
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                    else
+                                                    {
+                                                        <tr>
+                                                            <td class="text-center">@index</td>
+                                                            <td>
+                                                                <div class="form-group">
+                                                                    <input asp-for=@Model.Disks[index].DiskLabel class="form-control" readonly />
+                                                                    <span asp-validation-for=@Model.Disks[index].DiskLabel class="text-danger"></span>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="form-group">
+                                                                    <input asp-for=@Model.Disks[index].DiskSize class="form-control" />
+                                                                    <span asp-validation-for=@Model.Disks[index].DiskSize class="text-danger"></span>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    }
                                                 }
                                             </tbody>
-                                            <tfoot>
-                                                <tr>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td><input type="submit" value="Submit" class="btn btn-warning" /></td>
-                                                </tr>
-                                            </tfoot>
+
                                         </table>
                                     </div>
                                 </div>
-                                
+                                <div class="card-footer text-center">
+                                    <div class="form-check mr-auto">
+                                    </div>
+                                    @Html.ActionLink("Add new disk", "Add_Disk", new { id = "Add_disk" }, new { @class = "btn btn-success right" })
+                                </div>
+
+
+                            </div>
+                            <div class="card">
+
+                                <div class="card-footer text-center">
+                                    <div class="form-check mr-auto">
+                                        <input type="submit" value="Submit changes" class="btn btn-warning" />
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>

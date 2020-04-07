@@ -1,9 +1,33 @@
 [
   {
-    "Server Name": "Server100",
+    "Name": "MBCP01",
+    "OperatingSystem": "Windows 2019",
+    "Type": "Virtual",
+    "Environment": "Development",
+    "Customer": "MBCP",
+    "Memory": 1024,
+    "CPU": 16,
+    "Software": [
+      "IIS",
+      "Visual studio"
+    ],
+    "Disks": [
+      {
+        "Drive Letter": "C",
+        "Disk Size": 100
+      },
+      {
+        "Drive Letter": "D",
+        "Disk Size": 200
+      }
+    ]
+  },
+  {
+    "Name": "MBCP02",
+    "OperatingSystem": "RedHat 7.5",
     "Type": "Physical",
-    "Summary": "Production",
-    "Customer": "XPTO",
+    "Environment": "Production",
+    "Customer": "MBCP",
     "Memory": 1024,
     "CPU": 8,
     "Software": [
@@ -25,15 +49,16 @@
         "Disk Size": 500
       }
     ]
-
-  },
+  }
+,
   {
-    "Server Name": "Server200",
+    "Name": "MBCP03",
+    "OperatingSystem": "RedHat 7.5",
     "Type": "Physical",
-    "Summary": "Production",
-    "Customer": "NASA",
-    "Memory": 2048,
-    "CPU": 16,
+    "Environment": "Production",
+    "Customer": "MBCP",
+    "Memory": 1024,
+    "CPU": 8,
     "Software": [
       "IIS",
       "APACHE",

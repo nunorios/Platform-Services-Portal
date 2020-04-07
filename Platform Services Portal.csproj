@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Compile Remove="Controllers\GitHubController.cs" />
+    <Compile Remove="Controllers\ServerDefinitionController.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -263,6 +264,22 @@
   <ItemGroup>
     <Folder Include="Areas\" />
     <Folder Include="wwwroot\assets\demo\" />
+    <Folder Include="wwwroot\Data\Customers\MBCP\Executed\" />
+    <Folder Include="wwwroot\Data\Customers\MBCP\Scheduled\" />
+    <Folder Include="wwwroot\Data\Customers\NB\Executed\" />
+    <Folder Include="wwwroot\Data\Customers\NB\Scheduled\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Update="wwwroot\Data\Customers\NB\CurrentConfig\NOVOBANCO01.json">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\Data\Customers\NB\CurrentConfig\NOVOBANCO02.json">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

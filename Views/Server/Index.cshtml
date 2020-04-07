@@ -29,10 +29,10 @@
                                             @Html.DisplayNameFor(model => model.Type)
                                         </th>
                                         <th>
-                                            @Html.DisplayNameFor(model => model.Summary)
+                                            @Html.DisplayNameFor(model => model.Environment)
                                         </th>
                                         <th>
-                                            @Html.DisplayNameFor(model => model.Customer)
+                                            @Html.DisplayNameFor(model => model.OperatingSystem)
                                         </th>
                                         <th>Action</th>
                                     </tr>
@@ -46,10 +46,10 @@
                                             @Html.DisplayNameFor(model => model.Type)
                                         </th>
                                         <th>
-                                            @Html.DisplayNameFor(model => model.Summary)
+                                            @Html.DisplayNameFor(model => model.Environment)
                                         </th>
                                         <th>
-                                            @Html.DisplayNameFor(model => model.Customer)
+                                            @Html.DisplayNameFor(model => model.OperatingSystem)
                                         </th>
                                         <th>Action</th>
                                     </tr>
@@ -65,10 +65,10 @@
                                                 @Html.DisplayFor(modelItem => item.Type)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.Summary)
+                                                @Html.DisplayFor(modelItem => item.Environment)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.Customer)
+                                                @Html.DisplayFor(modelItem => item.OperatingSystem)
                                             </td>
                                             <td>
                                                 @Html.ActionLink("Details", "Details", new { id=item.ServerName }, new { @class = "btn btn-success right" })

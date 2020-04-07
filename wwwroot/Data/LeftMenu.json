@@ -1,17 +1,11 @@
 [
   {
-    "SquadName": "Server Config",
-    "SquadMenu": [
+    "Service": "Server Config",
+    "ServiceMenu": [
       {
         "Alias": "/Server",
-        "Customers": [ "NB", "UNI", "BIC" ],
-        "MenuName": "Server configuration",
-        "Provider": "nuno-rios/Testes"
-      },
-      {
-        "Alias": "VmW_AddDiskCapacityVM/Create",
         "Customers": [ "MBCP", "NB", "UNI", "BIC" ],
-        "MenuName": "Upgrade disk size",
+        "MenuName": "Server configuration",
         "Provider": "nuno-rios/Testes"
       },
       {
@@ -23,8 +17,8 @@
     ]
   },
   {
-    "SquadName": "Backups",
-    "SquadMenu": [
+    "Service": "Backups",
+    "ServiceMenu": [
       {
         "Alias": "BCK-New",
         "Customers": [ "MBCP", "NB" ],
@@ -40,8 +34,8 @@
     ]
   },
   {
-    "SquadName": "Monitoring",
-    "SquadMenu": [
+    "Service": "Monitoring",
+    "ServiceMenu": [
       {
         "Alias": "BlueCare-NewSituation",
         "Customers": [ "MBCP", "NB", "UNI" ],

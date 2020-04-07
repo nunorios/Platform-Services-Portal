@@ -13,7 +13,7 @@
                         <div class="card-icon">
                             <i class="material-icons">assignment</i>
                         </div>
-                        <h4 class="card-title">Server @Html.DisplayFor(model => model.ServerName) details</h4>
+                        <h4 class="card-title">Server @Html.DisplayFor(model => model.ServerName) current state</h4>
                     </div>
                     <div class="card-body">
                         <dl class="row">
@@ -30,16 +30,16 @@
                                 @Html.DisplayFor(model => model.Type)
                             </dd>
                             <dt class="col-6">
-                                @Html.DisplayNameFor(model => model.Summary)
+                                @Html.DisplayNameFor(model => model.OperatingSystem)
                             </dt>
                             <dd class="col-6">
-                                @Html.DisplayFor(model => model.Summary)
+                                @Html.DisplayFor(model => model.OperatingSystem)
                             </dd>
                             <dt class="col-6">
-                                @Html.DisplayNameFor(model => model.Customer)
+                                @Html.DisplayNameFor(model => model.Environment)
                             </dt>
                             <dd class="col-6">
-                                @Html.DisplayFor(model => model.Customer)
+                                @Html.DisplayFor(model => model.Environment)
                             </dd>
                             <dt class="col-6">
                                 @Html.DisplayNameFor(model => model.Memory)
@@ -90,8 +90,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-body">
-                    </div>
+
                     <div class="card-footer text-center">
                         <div class="form-check mr-auto">
                         </div>
@@ -105,7 +104,7 @@
                             <span class="btn-label">
                                 <i class="material-icons">get_app</i>
                             </span>
-                            @Html.ActionLink("Export", "", "Server", null, new { style = "color: white" })
+                            @Html.ActionLink("Export", "Export", "Server", null, new { style = "color: white" })
                         </button>
                         <button class="btn btn-warning">
                             <span class="btn-label">
@@ -114,33 +113,70 @@
                             @Html.ActionLink("Change config", "Edit", "Server", null, new { style = "color: white" })
                         </button>
                     </div>
-                       
-                    </div>
-                </div>
-                <h6>
-                    @{if (ViewBag.Differences != null)
-                        {
 
-                            foreach (var dif in ViewBag.Differences)
-                            {
-                                @dif.MemberPath <br />
-                                @dif.Value1 <br />
-                                @dif.Value2; <br />
-                            }
-                            if (ViewBag.Differences.Count > 0)
-                            {
-                                <button class="btn btn-warning">
-                                    <span class="btn-label">
-                                        <i class="material-icons">warning</i>
-                                    </span>
-                                    @Html.ActionLink("Commit changes", "Index", "Server", null, new { style = "color: white" })
-                                </button>
-                            }
-                        }
+                </div>
+            </div>
+            <div class="card">
+                @{if (ViewBag.Differences != null)
+                    {
+                        <div class="card-header card-header-warning card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">warning</i>
+                            </div>
+                            <h4 class="card-title">New desired state</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Element</th>
+                                            <th>Current value</th>
+                                            <th>New value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var dif in ViewBag.Differences)
+                                        {
+                                            <tr>
+
+                                                <td class="text-left">@dif.MemberPath</td>
+                                                <td class="text-right">@dif.Value1</td>
+                                                <td class="text-danger text-right">@dif.Value2</td>
+
+                                            </tr>
+                                        }
+                                    </tbody>
+                                    <tfoot>
+
+                                    </tfoot>
+                                </table>
+                                @if (ViewBag.Differences.Count > 0)
+                                {
+                            <div class="card-footer text-right">
+                                <div class="form-check mr-auto">
+                                    <button class="btn btn-success">
+                                        <span class="btn-label">
+                                            <i class="material-icons">check</i>
+                                        </span>
+                                        @Html.ActionLink("Discard changes", "Index",  new { userAction = "Discard" }, new { style = "color: white" })
+                                    </button>
+                                    <button class="btn btn-danger">
+                                        <span class="btn-label">
+                                            <i class="material-icons">close</i>
+                                        </span>
+                                        @Html.ActionLink("Commit changes", "Index", "/VmW_AddNewServerDSC",  new { userAction = "Commit" }, new { style = "color: white" })
+                                    </button>
+                                </div>
+                            </div>
+                                }
+                            </div>
+                        </div>
                     }
-                </h6>
+                }
             </div>
         </div>
     </div>
 </div>
+
 

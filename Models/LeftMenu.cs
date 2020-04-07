@@ -9,8 +9,9 @@ namespace Platform_Services_Portal.Models
 {
     public class LeftMenu
     {
-        public string SquadName { get; set; }
-        public IEnumerable<SquadMenu> SquadMenu { get; set; }
+        [JsonPropertyName("Service")]
+        public string ServiceName { get; set; }
+        public IEnumerable<ServiceMenu> ServiceMenu { get; set; }
         public override string ToString() => JsonSerializer.Serialize<LeftMenu>(this);
     }
 }

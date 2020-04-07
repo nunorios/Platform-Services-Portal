@@ -23,18 +23,18 @@
     @foreach (var menu in Model)
     {
         <li class="nav-item ">
-            <a class="nav-link" data-toggle="collapse" href="#@menu.SquadName">
-                <i class="material-icons">image</i>
+            <a class="nav-link" data-toggle="collapse" href="#@menu.ServiceName">
+                <i class="material-icons">content_paste</i>
                 <p>
-                    @menu.SquadName
+                    @menu.ServiceName
                     <b class="caret"></b>
                 </p>
             </a>
-            @if (menu.SquadMenu != null)
+            @if (menu.ServiceName != null)
             {
-                <div class="collapse" id="@menu.SquadName">
+                <div class="collapse" id="@menu.ServiceName">
 
-                    @foreach (var subMenu in menu.SquadMenu)
+                    @foreach (var subMenu in menu.ServiceMenu)
                     {
                         string s = @HttpContextAccessor.HttpContext.Session.GetString("Customer");
                         if (s != null)
@@ -45,7 +45,7 @@
                                 <ul class="nav">
                                     <li class="nav-item">
                                         <a class="nav-link" href="@subMenu.Alias">
-                                            <span class="sidebar-mini"> P </span>
+                                            <i class="material-icons">build</i>
                                             <span class="sidebar-normal"> @subMenu.MenuName </span>
                                         </a>
                                     </li>

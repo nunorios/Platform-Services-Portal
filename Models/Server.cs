@@ -9,10 +9,12 @@ namespace Platform_Services_Portal.Models
 {
     public class Server
     {
-        [JsonPropertyName("Server Name")]
+        [JsonPropertyName("Name")]
         public string ServerName { get; set; }
+        public string OperatingSystem { get; set; }
         public string Type { get; set; }
-        public string Summary { get; set; }
+
+        public string Environment { get; set; }
         public string Customer { get; set; }
         public int Memory { get; set; }
         public int CPU { get; set; }

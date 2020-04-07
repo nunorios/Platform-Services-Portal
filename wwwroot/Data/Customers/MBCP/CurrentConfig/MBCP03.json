@@ -1,9 +1,10 @@
 [
   {
-    "Server Name": "Server100",
+    "Name": "MBCP03",
+    "OperatingSystem": "RedHat 7.5",
     "Type": "Physical",
-    "Summary": "Production",
-    "Customer": "XPTO",
+    "Environment": "Production",
+    "Customer": "MBCP",
     "Memory": 1024,
     "CPU": 8,
     "Software": [
@@ -25,6 +26,5 @@
         "Disk Size": 500
       }
     ]
-
   }
 ]

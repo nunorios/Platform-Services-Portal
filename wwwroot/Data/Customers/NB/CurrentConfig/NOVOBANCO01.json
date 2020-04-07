@@ -1,11 +1,12 @@
 [
   {
-    "Server Name": "Server200",
+    "Name": "NOVOBANCO01",
+    "OperatingSystem": "RedHat 7.5",
     "Type": "Physical",
-    "Summary": "Production",
-    "Customer": "NASA",
-    "Memory": 2048,
-    "CPU": 16,
+    "Environment": "Production",
+    "Customer": "MBCP",
+    "Memory": 1024,
+    "CPU": 8,
     "Software": [
       "IIS",
       "APACHE",

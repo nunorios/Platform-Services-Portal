@@ -309,7 +309,8 @@ md = {
 
 
   initFormExtendedDatetimepickers: function() {
-    $('.datetimepicker').datetimepicker({
+      $('.datetimepicker').datetimepicker({
+      format: 'DD/MM/YYYY hh:mm',
       icons: {
         time: "fa fa-clock-o",
         date: "fa fa-calendar",
@@ -324,7 +325,7 @@ md = {
     });
 
     $('.datepicker').datetimepicker({
-      format: 'MM/DD/YYYY',
+      format: 'DD/MM/YYYY',
       icons: {
         time: "fa fa-clock-o",
         date: "fa fa-calendar",
