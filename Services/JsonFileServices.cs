@@ -1,7 +1,7 @@
+using Platform_Services_Portal.Models;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
-using Platform_Services_Portal.Models;
 
 namespace Platform_Services_Portal.Services
 {
@@ -114,11 +114,11 @@ namespace Platform_Services_Portal.Services
         }
 
 
-        public IEnumerable<LeftMenu> GetLeftMenu()
+        public IEnumerable<LeftMenuModel> GetLeftMenu()
         {
             using (var jsonFileReader = File.OpenText(JsonFileName("LeftMenu.json")))
             {
-                return JsonSerializer.Deserialize<LeftMenu[]>(jsonFileReader.ReadToEnd(),
+                return JsonSerializer.Deserialize<LeftMenuModel[]>(jsonFileReader.ReadToEnd(),
                     new JsonSerializerOptions
                     {
                         PropertyNameCaseInsensitive = true

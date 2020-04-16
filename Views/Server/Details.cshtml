@@ -94,19 +94,19 @@
                     <div class="card-footer text-center">
                         <div class="form-check mr-auto">
                         </div>
-                        <button class="btn">
+                        <button class="btn btn-sm">
                             <span class="btn-label">
                                 <i class="material-icons">keyboard_arrow_left</i>
                             </span>
                             @Html.ActionLink("Back to list", "Index", "Server", null, new { style = "color: white" })
                         </button>
-                        <button class="btn btn-info">
+                        <button class="btn btn-info btn-sm">
                             <span class="btn-label">
                                 <i class="material-icons">get_app</i>
                             </span>
-                            @Html.ActionLink("Export", "Export", "Server", null, new { style = "color: white" })
+                            @Html.ActionLink("Export", "Export", "Server", null, new { style = "color: white", target = "_blank" })
                         </button>
-                        <button class="btn btn-warning">
+                        <button class="btn btn-warning btn-sm">
                             <span class="btn-label">
                                 <i class="material-icons">warning</i>
                             </span>
@@ -155,13 +155,13 @@
                                 {
                             <div class="card-footer text-right">
                                 <div class="form-check mr-auto">
-                                    <button class="btn btn-success">
+                                    <button class="btn btn-success btn-sm">
                                         <span class="btn-label">
                                             <i class="material-icons">check</i>
                                         </span>
                                         @Html.ActionLink("Discard changes", "Index",  new { userAction = "Discard" }, new { style = "color: white" })
                                     </button>
-                                    <button class="btn btn-danger">
+                                    <button class="btn btn-danger btn-sm">
                                         <span class="btn-label">
                                             <i class="material-icons">close</i>
                                         </span>

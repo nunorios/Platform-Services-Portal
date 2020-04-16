@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Octokit;
+using System.Text.Json;
 
 namespace Platform_Services_Portal.Models
 {
     public class GitHubIssueModel
     {
-        
+
         public int IssueID { get; set; }
-        
+
         [Required]
         public string Title { get; set; }
         public string Body { get; set; }
@@ -24,36 +19,38 @@ namespace Platform_Services_Portal.Models
         public string HtmlUrl { get; set; }
         public string Exception { get; set; }
         [Required]
-        public string Repository { get; set; }
-       
-        
-        
-        public GitHubIssueModel(string Title, string Body, string Repository)
+        public string Provider { get; set; }
+
+
+
+        public GitHubIssueModel(string Title, string Body, string Provider)
         {
             this.Title = Title;
             this.Body = Body;
-            this.Repository = Repository;
+            this.Provider = Provider;
         }
-        public GitHubIssueModel(string Title, string Body, ICollection<string> Labels, ICollection<string> Assignees, string Repository)
+        public GitHubIssueModel(string Title, string Body, ICollection<string> Labels, ICollection<string> Assignees, string Provider)
         {
             this.Title = Title;
             this.Body = Body;
-            this.Repository = Repository;
+            this.Provider = Provider;
             this.Labels = Labels;
             this.Assignees = Assignees;
 
         }
-        public GitHubIssueModel(string Title, string Body, string Label, string Assignee, string Repository)
+        public GitHubIssueModel(string Title, string Body, string Label, string Assignee, string Provider)
         {
             this.Title = Title;
             this.Body = Body;
-            this.Repository = Repository;
+            this.Provider = Provider;
             this.Label = Label;
             this.Assignee = Assignee;
 
         }
         public GitHubIssueModel() { }
 
-        
+        public override string ToString() => JsonSerializer.Serialize<GitHubIssueModel>(this);
+
+
     }
 }

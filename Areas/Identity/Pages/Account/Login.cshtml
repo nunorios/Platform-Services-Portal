@@ -1,0 +1,86 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+    
+}
+
+<form id="account" method="post">
+    <div class="card card-login">
+        <div class="card-header card-header-info text-center">
+            <h3 class="card-title">Login</h3>
+        </div>
+        <br />
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="card-body ">
+            <span class="bmd-form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="material-icons">email</i>
+                        </span>
+                    </div>
+                    <input type="email" asp-for="Input.Email" class="form-control" placeholder="Email...">
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+            </span>
+            <br />
+            <span class="bmd-form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="material-icons">lock_outline</i>
+                        </span>
+                    </div>
+                    <input type="password" asp-for="Input.Password" class="form-control" placeholder="Password...">
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+            </span>
+            <br />
+            <br />
+        </div>
+        <div class="card-footer justify-content-center">
+            <button type="submit" class="btn btn-info">Lets Go</button>
+        </div>
+        <span class="bmd-form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="material-icons">face</i>
+                    </span>
+                </div>
+                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+            </div>
+        </span>
+        <br />
+        <br />
+        <div class="form-group">
+            <!--<p>
+                <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+            </p>-->
+            <p>
+
+            </p>
+        </div>
+    </div>
+</form>
+
+<script>
+    $(document).ready(function () {
+        md.checkFullPageBackgroundImage();
+        setTimeout(function () {
+            // after 1000 ms we add the class animated to the login/register card
+            $('.card').removeClass('card-hidden');
+        }, 700);
+    });
+</script>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+
+
+
+

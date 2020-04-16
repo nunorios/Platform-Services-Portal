@@ -58,6 +58,8 @@ https://material.io/
 
  Passing values between Views and Controllers and Controlles to controllers
  https://www.codeproject.com/articles/758458/passing-data-view-to-controller-controller-to-view
+ Passar valores para DropDown (ViewData, Viewbag, TempData
+ https://www.c-sharpcorner.com/article/different-ways-bind-the-value-to-razor-dropdownlist-in-aspnet-mvc5/
 
  Working with Session
  https://benjii.me/2016/07/using-sessions-and-httpcontext-in-aspnetcore-and-mvc-core/
@@ -65,3 +67,20 @@ https://material.io/
 
  ObjectsComparer
 https://levelup.gitconnected.com/using-objectscomparer-to-compare-objects-in-net-c-2a4faab9630e
+
+
+Usar autenticação de cookie sem identidade ASP.NET Core
+https://docs.microsoft.com/pt-br/aspnet/core/security/authentication/cookie?view=aspnetcore-3.1
+
+Identity
+https://docs.microsoft.com/en-us/aspnet/core/security/authentication/scaffold-identity?view=aspnetcore-2.1&tabs=visual-studio
+
+Add Role
+https://docs.microsoft.com/en-us/aspnet/core/security/authorization/roles?view=aspnetcore-3.1
+e depois
+https://gooroo.io/GoorooTHINK/Article/17333/Custom-user-roles-and-rolebased-authorization-in-ASPNET-core/28352#.XpGr1pnOWHt
+
+
+
+Centralizando logs com ElasticSearch, Kibana, Serilog, Docker e .NET Core 3.1
+https://imasters.com.br/dotnet/centralizando-logs-com-elasticsearch-kibana-serilog-docker-e-net-core-3-1

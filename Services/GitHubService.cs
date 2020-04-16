@@ -1,24 +1,33 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Octokit;
 using Platform_Services_Portal.Models;
+using System;
+using System.Threading.Tasks;
+
 
 
 namespace Platform_Services_Portal.Services
 {
     public class GitHubService
     {
+        IConfiguration Configuration;
+        Credentials Credentials;
+
+        public GitHubService(IConfiguration configuration)
+        {
+            this.Configuration = configuration;
+            
+        }
 
         // requires using Microsoft.Extensions.Configuration;
-        private readonly IConfiguration Configuration;
         readonly GitHubClient client = new GitHubClient(new ProductHeaderValue("nuno-rios"), new Uri("https://github.ibm.com/"));
-        string GitHubToken = "5f9846604d247cc370bb48b2cc166cae24dab7f7";
-        public GitHubIssueModel GetIssues(string repo)
+        
+        public GitHubIssueModel GetIssues(string Provider)
         {
+            this.Credentials = new Credentials(Configuration.GetSection("GitHubRepo").GetSection(Provider)["Token"]);
             System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
             //client.Credentials = new Credentials(Configuration["GitHubToken"]);
-            client.Credentials = new Credentials(GitHubToken);
+            client.Credentials = Credentials;
             try
             {
                 #region MyRegion
@@ -42,13 +51,13 @@ namespace Platform_Services_Portal.Services
             return null;
         }
 
-        public async Task<GitHubIssueModel> SettIssue(GitHubIssueModel issue)
+        public async Task<GitHubIssueModel> SettIssue(GitHubIssueModel issue, string Provider)
         {
-            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
-            client.Credentials = new Credentials(GitHubToken);
             try
             {
-                #region MyRegion
+                this.Credentials = new Credentials(Configuration.GetSection("GitHubRepo").GetSection(Provider)["Token"]);
+                System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
+                client.Credentials = Credentials;
                 //create issue
                 var createIssue = new NewIssue(issue.Title);
                 createIssue.Body = issue.Body;
@@ -64,12 +73,11 @@ namespace Platform_Services_Portal.Services
                         createIssue.Labels.Add(labels[i]);
                     }
                 }
-                string[] Repo = issue.Repository.Split("/");
+                string[] Repo = Configuration.GetSection("GitHubRepo").GetSection(Provider)["Reponame"].Split("/");
                 var result = await client.Issue.Create(Repo[0], Repo[1], createIssue);
                 issue.HtmlUrl = result.HtmlUrl;
                 issue.IssueID = result.Number;
                 return issue;
-                #endregion
             }
             catch (Exception ex)
             {

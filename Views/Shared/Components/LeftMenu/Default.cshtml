@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Http
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
-@model IEnumerable<Platform_Services_Portal.Models.LeftMenu>
+@model IEnumerable<Platform_Services_Portal.Models.LeftMenuModel>
 <div class="row">
     <div class="card card-profile">
         <div class="card-avatar">
@@ -14,17 +14,12 @@
     </div>
 </div>
 <ul class="nav">
-    <li class="nav-item ">
-        <a class="nav-link" href="../../Home">
-            <i class="material-icons">dashboard</i>
-            <p> Dashboard </p>
-        </a>
-    </li>
+    
     @foreach (var menu in Model)
     {
         <li class="nav-item ">
             <a class="nav-link" data-toggle="collapse" href="#@menu.ServiceName">
-                <i class="material-icons">content_paste</i>
+                <i class="material-icons"> @menu.Icon</i>
                 <p>
                     @menu.ServiceName
                     <b class="caret"></b>
@@ -45,7 +40,7 @@
                                 <ul class="nav">
                                     <li class="nav-item">
                                         <a class="nav-link" href="@subMenu.Alias">
-                                            <i class="material-icons">build</i>
+                                            <i class="material-icons">@subMenu.Icon</i>
                                             <span class="sidebar-normal"> @subMenu.MenuName </span>
                                         </a>
                                     </li>

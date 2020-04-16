@@ -1,63 +1,125 @@
 [
   {
+    "Service": "Dashboard",
+    "Icon": "dashboard",
+    "ServiceMenu": [
+      {
+        "Alias": "/DashBoard",
+        "Customers": [ "MBCP", "NB" ],
+        "MenuName": "VMWare Reports",
+        "Icon": "dashboard"
+      }
+    ]
+  },
+  {
     "Service": "Server Config",
+    "Icon": "content_paste",
     "ServiceMenu": [
       {
         "Alias": "/Server",
         "Customers": [ "MBCP", "NB", "UNI", "BIC" ],
         "MenuName": "Server configuration",
-        "Provider": "nuno-rios/Testes"
-      },
-      {
-        "Alias": "VmW_AddNewDisk",
-        "Customers": [ "MBCP", "NB", "UNI", "BIC" ],
-        "MenuName": "Add new disk",
-        "Provider": "nuno-rios/Testes"
+        "Icon": "build"
       }
     ]
   },
   {
     "Service": "Backups",
+    "Icon": "content_paste",
     "ServiceMenu": [
       {
-        "Alias": "BCK-New",
+        "Alias": "/BackupNode",
         "Customers": [ "MBCP", "NB" ],
-        "MenuName": "Add new backup",
-        "Provider": "nuno-rios/Testes"
+        "MenuName": "Server backup",
+        "Icon": "build"
       },
       {
-        "Alias": "BCK-Blocked",
+        "Alias": "/BackupNode/RobotInventory",
+        "Customers": [ "MBCP", "NB" ],
+        "MenuName": "Robot inventory",
+        "Icon": "build"
+      },
+      {
+        "Alias": "/SubmitGitHubIssue/Index/BaaS",
         "Customers": [ "MBCP", "NB", "UNI" ],
-        "MenuName": "Stop backup",
-        "Provider": "nuno-rios/Testes"
+        "MenuName": "Generic SR",
+        "Icon": "build"
       }
     ]
   },
   {
     "Service": "Monitoring",
+    "Icon": "content_paste",
     "ServiceMenu": [
       {
-        "Alias": "BlueCare-NewSituation",
+        "Alias": "Monitoring",
         "Customers": [ "MBCP", "NB", "UNI" ],
-        "MenuName": "New bluecare situation",
-        "Provider": "nuno-rios/Testes"
+        "MenuName": "ITM agent",
+        "Icon": "build"
       },
       {
-        "Alias": "BlueCare-TresholdModify",
+        "Alias": "BlueCare",
         "Customers": [ "MBCP", "NB", "UNI" ],
-        "MenuName": "Add new treshold",
-        "Provider": "nuno-rios/Testes"
+        "MenuName": "Bluecare",
+        "Icon": "build"
+      },
+
+      {
+        "Alias": "Everbridge",
+        "Customers": [ "MBCP", "NB", "UNI" ],
+        "MenuName": "Everbridge ",
+        "Icon": "build"
+      },
+      {
+        "Alias": "/SubmitGitHubIssue/Index/HST",
+        "Customers": [ "MBCP", "NB", "UNI" ],
+        "MenuName": "Generic SR",
+        "Icon": "build"
       }
     ]
   },
   {
-    "SquadName": "Service request",
-    "SquadMenu": [
+    "Service": "Server Build",
+    "Icon": "content_paste",
+    "ServiceMenu": [
       {
-        "Alias": "/SubmitGitHubIssue",
+        "Alias": "VmW-CreateOVA_OVF",
         "Customers": [ "MBCP", "NB", "UNI" ],
-        "MenuName": "Generic SR",
-        "Provider": "nuno-rios/Testes"
+        "MenuName": "Create OVA/OVF",
+        "Icon": "build"
+      },
+      {
+        "Alias": "VmW-DeployOVA_OVF",
+        "Customers": [ "MBCP", "NB", "UNI" ],
+        "MenuName": "Deploy OVA/OVF",
+        "Icon": "build"
+      },
+      {
+        "Alias": "VmW-SnapshotVM",
+        "Customers": [ "MBCP", "NB", "UNI" ],
+        "MenuName": "Create snapshot",
+        "Icon": "build"
+      }
+    ]
+  },
+  {
+    "Service": "Service request",
+    "Icon": "content_paste",
+    "ServiceMenu": [
+      {
+        "Alias": "/SubmitGitHubIssue/Index/Testes",
+        "Customers": [ "MBCP", "NB", "UNI" ],
+        "MenuName": "Generic SR"
+      },
+      {
+        "Alias": "/PortalMetrics",
+        "Customers": [ "MBCP", "NB", "UNI" ],
+        "MenuName": "Metricas"
+      },
+      {
+        "Alias": "/PortalMetrics/Create",
+        "Customers": [ "MBCP", "NB", "UNI" ],
+        "MenuName": "Metricas Create"
       }
     ]
   }

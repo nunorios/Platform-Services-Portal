@@ -1,0 +1,19 @@
+{
+  "Name": "MBCP01",
+  "OperatingSystem": "Windows 2019",
+  "Type": "Virtual",
+  "Environment": "Development",
+  "Customer": "MBCP",
+  "Memory": 1024,
+  "CPU": 16,
+  "Disks": [
+    {
+      "Drive Letter": "C",
+      "Disk Size": 100
+    },
+    {
+      "Drive Letter": "D",
+      "Disk Size": 300
+    }
+  ]
+}

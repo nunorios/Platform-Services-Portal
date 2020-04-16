@@ -1,28 +1,31 @@
-{
-  "Name": "NOVOBANCO02",
-  "OperatingSystem": "RedHat 7.5",
-  "Type": "Physical",
-  "Environment": "Production",
-  "Customer": "MBCP",
-  "Memory": 1024,
-  "CPU": 8,
-  "Software": [
-    "IIS",
-    "APACHE",
-    "Visual studio"
-  ],
-  "Disks": [
-    {
-      "Drive Letter": "C",
-      "Disk Size": 100
-    },
-    {
-      "Drive Letter": "D",
-      "Disk Size": 200
-    },
-    {
-      "Drive Letter": "E",
-      "Disk Size": 500
-    }
-  ]
-}
+[
+
+  {
+    "Name": "NOVOBANCO02",
+    "OperatingSystem": "RedHat 7.5",
+    "Type": "Physical",
+    "Environment": "Production",
+    "Customer": "MBCP",
+    "Memory": 1024,
+    "CPU": 8,
+    "Software": [
+      "IIS",
+      "APACHE",
+      "Visual studio"
+    ],
+    "Disks": [
+      {
+        "Drive Letter": "C",
+        "Disk Size": 100
+      },
+      {
+        "Drive Letter": "D",
+        "Disk Size": 200
+      },
+      {
+        "Drive Letter": "E",
+        "Disk Size": 500
+      }
+    ]
+  }
+]

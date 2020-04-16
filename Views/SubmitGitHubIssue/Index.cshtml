@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <form asp-action="Index" class="form-horizontal">
+                <form asp-action="Submit" class="form-horizontal">
                     <div class="card">
                         <div class="card-header card-header-info card-header-text">
                             <div class="card-text">
@@ -45,7 +45,7 @@
                                 <label class="col-2 col-form-label">Description</label>
                                 <div class="col-10">
                                     <div class="form-group bmd-form-group">
-                                        <textarea asp-for="Body" class="form-control" rows="3"></textarea>
+                                        <textarea asp-for="Body" class="form-control" rows="10"></textarea>
                                         <span class="bmd-help">Description of the Service Request</span>
                                         <span asp-validation-for="Body" class="text-danger"></span>
                                     </div>
@@ -91,89 +91,98 @@
                                 <input asp-for="Label" class="form-control" id="labelArray" hidden />
                                 <span asp-validation-for="Label" class="text-danger"></span>
                             </div>
-                            <div class="row">
-                                <div class="col-4 col-form-label text-right">
-                                    <select class="selectpicker" data-size="7" data-style="btn btn-info btn-round" title="Squad" id="dropDownRepository">
+                            @if (Model != null)
+                            {
+                                @if (Model.Provider == "" || Model.Provider == null)
+                                {
+                                    <div class="row">
+                                        <div class="col-4 col-form-label text-right">
+                                            <select class="selectpicker" data-size="7" data-style="btn btn-info btn-round" title="Squad" id="dropDownRepository">
+                                                <option class="dropdown-item" value="nuno-rios/Testes">Testes</option>
+                                                <option class="dropdown-item" value="3">HST</option>
+                                                <option class="dropdown-item" value="4">HCE</option>
+                                                <option class="dropdown-item" value="5">Automation</option>
+                                                <option class="dropdown-item" value="6">BaaS</option>
+                                            </select>
+                                        </div>
+                                        <input asp-for="Provider" class="form-control" id="dropDownRepository_Input" hidden />
+                                        <span asp-validation-for="Provider" class="text-danger"></span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <div class="form-group bmd-form-group">
+                                                <input asp-for="Provider" class="form-control" hidden />
 
-                                        <option class="dropdown-item" value="nuno-rios/Testes">Testes</option>
-                                        <option class="dropdown-item" value="3">HST</option>
-                                        <option class="dropdown-item" value="4">HCE</option>
-                                        <option class="dropdown-item" value="5">Automation</option>
-                                        <option class="dropdown-item" value="6">BaaS</option>
-                                    </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                }
+                            }
+                            else
+                            {
+                                <div class="row">
+                                    <div class="col-4 col-form-label text-right">
+                                        <select class="selectpicker" data-size="7" data-style="btn  btn-sm  btn-info btn-round" title="Squad" id="dropDownRepository">
+                                            <option class="dropdown-item" value="nuno-rios/Testes">Testes</option>
+                                            <option class="dropdown-item" value="3">HST</option>
+                                            <option class="dropdown-item" value="4">HCE</option>
+                                            <option class="dropdown-item" value="5">Automation</option>
+                                            <option class="dropdown-item" value="6">BaaS</option>
+                                        </select>
+                                    </div>
+                                    <input asp-for="Provider" class="form-control" id="dropDownRepository_Input" hidden />
+                                    <span asp-validation-for="Provider" class="text-danger"></span>
                                 </div>
-                                <input asp-for="Repository" class="form-control" id="dropDownRepository_Input" hidden />
-                                <span asp-validation-for="Repository" class="text-danger"></span>
-                            </div>
+
+                            }
                         </div>
                         <div class="card-footer text-right">
                             <div class="form-check mr-auto">
                             </div>
-                            <input type="submit" value="Create" class="btn btn-info" />
+                            <input type="submit" value="Create" class="btn  btn-sm  btn-info" />
                         </div>
-
                     </div>
                 </form>
-
-                @if (Model != null)
+                @if (TempData["Success"] != null)
                 {
-                    if (@Model.HtmlUrl != null)
-                    {
-                        <div class="alert alert-success">
-
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <i class="material-icons">close</i>
-                            </button>
-                            <span>
-                                <b> Success - </b>  Service request created with id: @Model.IssueID. For more info, please click on the <a href=@Model.HtmlUrl target="_blank">link</a>
-                            </span>
-
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="alert alert-danger">
-
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <i class="material-icons">close</i>
-                            </button>
-                            <span>
-                                <b> Error - </b> Service request not created. Pleae report @Model.Exception
-                            </span>
-
-                        </div>
-
-                    }
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <i class="material-icons">close</i>
+                        </button>
+                        <span>
+                            <b> Success - </b>  Service request created with id: @Model.IssueID. For more info, please click on the <a href=@Model.HtmlUrl target="_blank">link</a>
+                        </span>
+                    </div>
                 }
             </div>
         </div>
     </div>
+</div>
 
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
 
+        document.getElementById('dropDownRepository').addEventListener('change', function () {
+            //alert(this.value);
+            document.getElementById('dropDownRepository_Input').value = this.value;
+        });
 
-
-   
-
-    @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-        <script>
-
-            document.getElementById('dropDownRepository').addEventListener('change', function () {
-                //alert(this.value);
-                document.getElementById('dropDownRepository_Input').value = this.value;
-            });
-
-            function ValidateLabelSelection() {
-                document.getElementById('labelArray').value = "";
-                var checkboxes = document.getElementsByName("labelOption");
-                var numberOfCheckedItems = 0;
-                for (var i = 0; i < checkboxes.length; i++) {
-                    if (checkboxes[i].checked) {
-                        numberOfCheckedItems++;
-                        document.getElementById('labelArray').value += checkboxes[i].value + ";";
-                        //alert(document.getElementById('labelArray').value);
-                    }
+        function ValidateLabelSelection() {
+            document.getElementById('labelArray').value = "";
+            var checkboxes = document.getElementsByName("labelOption");
+            var numberOfCheckedItems = 0;
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    numberOfCheckedItems++;
+                    document.getElementById('labelArray').value += checkboxes[i].value + ";";
+                    //alert(document.getElementById('labelArray').value);
                 }
             }
-        </script>
-    }
+        }
+    </script>
+}

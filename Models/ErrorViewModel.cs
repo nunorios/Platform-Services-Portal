@@ -1,5 +1,3 @@
-using System;
-
 namespace Platform_Services_Portal.Models
 {
     public class ErrorViewModel

@@ -1,40 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Platform_Services_Portal.Models;
-using Microsoft.AspNetCore.Http;
+using System;
+using System.Diagnostics;
 
 namespace Platform_Services_Portal.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
+        private PortalMetricsContext _context;
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, PortalMetricsContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
+            _logger.LogInformation("User  '{UserId}' logged in.", User.Identity.Name);
             if (Request.Query.ContainsKey("customer"))
             {
                 string customer = Request.QueryString.Value.Replace("?customer=", "").ToString();
+                _logger.LogDebug(DateTime.UtcNow + "| selected customer " + customer);
                 HttpContext.Session.SetString("Customer", customer);
                 //TempData["customer"] = Request.QueryString.Value.Replace("?customer=", "").ToString();
             }
-
             return View();
         }
         [HttpPost]
         [Route("Home/{customer}")]
         public IActionResult Index(string customer)
         {
+           
             string strName = Convert.ToString(customer);
+            
             return View();
         }
 
@@ -43,7 +46,7 @@ namespace Platform_Services_Portal.Controllers
             return View();
         }
 
-       
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
